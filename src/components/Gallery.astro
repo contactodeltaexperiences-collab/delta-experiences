@@ -1,0 +1,107 @@
+---
+import { site } from '../data/site';
+
+const photos = [
+	'/images/gallery-1.jpg',
+	'/images/gallery-2.jpg',
+	'/images/gallery-3.jpg',
+	'/images/gallery-4.jpg',
+	'/images/gallery-5.jpg',
+	'/images/gallery-6.jpg',
+];
+---
+
+<section id="galeria" class="bg-white py-20">
+	<div class="mx-auto max-w-6xl px-6">
+		<h2 class="text-center text-3xl font-semibold text-green sm:text-4xl">Momentos en el Delta</h2>
+
+		<div class="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+			{
+				photos.map((photo) => (
+					<div class="aspect-square overflow-hidden rounded-xl">
+						<img src={photo} alt="Paseo en lancha por el Delta" class="h-full w-full object-cover transition duration-500 hover:scale-105" loading="lazy" />
+					</div>
+				))
+			}
+
+			<button
+				id="open-video"
+				type="button"
+				class="group relative aspect-square overflow-hidden rounded-xl"
+				aria-label="Reproducir video"
+			>
+				<img src={site.galleryVideoPoster} alt="" class="h-full w-full object-cover" loading="lazy" />
+				<span class="absolute inset-0 flex items-center justify-center bg-black/40 transition group-hover:bg-black/50">
+					<span class="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-lg transition group-hover:scale-110">
+						<svg viewBox="0 0 24 24" class="ml-1 h-6 w-6 fill-green">
+							<path d="M8 5v14l11-7z" />
+						</svg>
+					</span>
+				</span>
+			</button>
+		</div>
+	</div>
+
+	<div
+		id="video-modal"
+		class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4"
+	>
+		<button
+			id="close-video"
+			type="button"
+			aria-label="Cerrar video"
+			class="absolute right-5 top-5 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white hover:bg-white/20"
+		>
+			&times;
+		</button>
+		<video id="modal-video" class="max-h-[85vh] w-full max-w-3xl rounded-lg" controls playsinline data-src={site.galleryVideoSrc}></video>
+	</div>
+</section>
+
+<script>
+	import Hls from 'hls.js';
+
+	const openBtn = document.getElementById('open-video');
+	const closeBtn = document.getElementById('close-video');
+	const modal = document.getElementById('video-modal');
+	const video = document.getElementById('modal-video') as HTMLVideoElement | null;
+
+	let loaded = false;
+
+	function loadVideo() {
+		if (loaded || !video) return;
+		const src = video.dataset.src;
+		if (!src) return;
+
+		if (src.endsWith('.m3u8')) {
+			if (video.canPlayType('application/vnd.apple.mpegurl')) {
+				video.src = src;
+			} else if (Hls.isSupported()) {
+				const hls = new Hls();
+				hls.loadSource(src);
+				hls.attachMedia(video);
+			}
+		} else {
+			video.src = src;
+		}
+		loaded = true;
+	}
+
+	openBtn?.addEventListener('click', () => {
+		modal?.classList.remove('hidden');
+		modal?.classList.add('flex');
+		loadVideo();
+		video?.play();
+	});
+
+	function closeModal() {
+		video?.pause();
+		modal?.classList.add('hidden');
+		modal?.classList.remove('flex');
+	}
+
+	closeBtn?.addEventListener('click', closeModal);
+	modal?.addEventListener('click', (e) => {
+		if (e.target === modal) closeModal();
+	});
+</script>

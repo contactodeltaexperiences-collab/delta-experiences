@@ -1,0 +1,39 @@
+---
+const services = [
+	'Picada y bebida',
+	'Timonel',
+	'Español – Portugués – Inglés',
+	'Zonas de relax en el río',
+	'Paseos salvajes',
+	'Música',
+	'Vistas únicas de la ciudad',
+];
+---
+
+<section id="servicios" class="bg-white py-20">
+	<div class="mx-auto grid max-w-6xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+		<div>
+			<h2 class="text-3xl font-semibold text-green sm:text-4xl">Servicios</h2>
+			<p class="mt-5 leading-relaxed text-ink/75">
+				En <strong class="text-ink">Delta Experiences</strong> nos dedicamos a ofrecer paseos en lancha
+				por el <strong class="text-ink">Delta de Tigre</strong>, combinando naturaleza, relax y
+				gastronomía. El objetivo es que disfrutes una experiencia exclusiva, rodeado del entorno
+				natural, con total comodidad y tranquilidad desde el inicio hasta el final de la aventura.
+			</p>
+			<p class="mt-6 font-medium text-ink">Nuestros servicios incluyen:</p>
+		</div>
+
+		<ul class="grid gap-4 sm:grid-cols-2">
+			{
+				services.map((service) => (
+					<li class="flex items-center gap-3 rounded-xl bg-cream px-4 py-3 text-sm font-medium text-ink">
+						<span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold text-xs text-ink">
+							✓
+						</span>
+						{service}
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

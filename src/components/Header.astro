@@ -1,0 +1,27 @@
+---
+import { site, whatsappUrl } from '../data/site';
+---
+
+<header class="absolute inset-x-0 top-0 z-30">
+	<nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+		<a href="#top" class="flex items-center gap-2">
+			<img src="/images/logo.png" alt={site.name} class="h-12 w-auto drop-shadow-md" />
+		</a>
+		<div class="flex items-center gap-3">
+			<a
+				href={whatsappUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="hidden items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-green shadow-sm backdrop-blur transition hover:bg-white sm:flex"
+			>
+				WhatsApp
+			</a>
+			<a
+				href="#contacto"
+				class="rounded-full bg-gold px-5 py-2 text-sm font-semibold text-ink shadow-sm transition hover:bg-gold-dark"
+			>
+				Reserva ahora
+			</a>
+		</div>
+	</nav>
+</header>

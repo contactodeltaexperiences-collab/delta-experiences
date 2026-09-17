@@ -1,0 +1,71 @@
+---
+import { whatsappUrl } from '../data/site';
+
+const packages = [
+	{
+		name: 'Express',
+		duration: '2 horas',
+		text: 'Paseo corto por canales, picada y bebida artesanal (1 bebida por persona). Ideal para escapadas.',
+	},
+	{
+		name: 'Classic',
+		duration: '3 horas',
+		text: 'Incluye todo lo de la Express + parada en restaurante isleño para disfrutar un almuerzo o descanso (almuerzo no incluido).',
+		featured: true,
+	},
+	{
+		name: 'Full',
+		duration: '4 horas',
+		text: 'Todo lo anterior + paradas especiales en el delta y tiempo de relax con vistas a la ciudad (baño en el río opcional).',
+	},
+];
+---
+
+<section id="packs" class="mx-auto max-w-6xl px-6 py-20">
+	<div class="mx-auto max-w-2xl text-center">
+		<h2 class="text-3xl font-semibold text-green sm:text-4xl">Elegí tu tiempo ideal — Nuestros packs</h2>
+		<p class="mt-5 leading-relaxed text-ink/75">
+			Disfrutá un paseo en lancha a tu ritmo. Mandanos un mensaje al contacto con el tiempo que
+			quieras. Las paradas para almorzar se realizarán en los restaurantes disponibles sobre el río,
+			de manera que el timonel los esperará en la lancha. El costo del almuerzo no está incluido y
+			nuestra capacidad máxima es de 7 pasajeros.
+		</p>
+	</div>
+
+	<div class="mt-12 grid gap-8 md:grid-cols-3">
+		{
+			packages.map((pack) => (
+				<div
+					class:list={[
+						'flex flex-col rounded-2xl p-8 shadow-sm ring-1',
+						pack.featured ? 'bg-green text-white ring-green' : 'bg-white text-ink ring-black/5',
+					]}
+				>
+					<h3 class="text-2xl font-semibold">{pack.name}</h3>
+					<p
+						class:list={[
+							'mt-1 text-sm font-medium uppercase tracking-wide',
+							pack.featured ? 'text-gold' : 'text-green',
+						]}
+					>
+						{pack.duration}
+					</p>
+					<p class:list={['mt-4 flex-1 text-sm leading-relaxed', pack.featured ? 'text-white/85' : 'text-ink/70']}>
+						{pack.text}
+					</p>
+					<a
+						href={whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class:list={[
+							'mt-6 inline-block rounded-full px-5 py-2.5 text-center text-sm font-semibold transition',
+							pack.featured ? 'bg-gold text-ink hover:bg-gold-dark' : 'bg-cream text-green hover:bg-green hover:text-white',
+						]}
+					>
+						Reserva ahora
+					</a>
+				</div>
+			))
+		}
+	</div>
+</section>

@@ -10,8 +10,7 @@ export const site = {
 	heroVideoHls: "https://vz-4340bc4e-ca8.b-cdn.net/7b6466d1-da66-4621-a63f-226129fb42e6/playlist.m3u8",
 	galleryVideoEmbed:
 		"https://iframe.mediadelivery.net/embed/534020/7c4e24f2-4941-4f8b-82b1-30948150efe8?autoplay=false&loop=false&muted=false&preload=true&responsive=true",
-	// TODO: reemplazar por tu access key gratuita de https://web3forms.com
-	web3formsAccessKey: "REEMPLAZAR_CON_TU_ACCESS_KEY",
+	web3formsAccessKey: "79f9af9f-51db-4f07-bc80-26ff3412be46",
 };
 
 export const whatsappUrl = `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(site.whatsappMessage)}`;

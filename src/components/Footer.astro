@@ -1,16 +1,19 @@
 ---
 import { site } from '../data/site';
-
-const year = new Date().getFullYear();
 ---
 
-<footer class="bg-ink py-12 text-white/80">
-	<div class="mx-auto flex max-w-6xl flex-col items-center gap-4 px-6 text-center">
-		<img src="/images/logo.png" alt={site.name} class="h-10 w-auto opacity-90" />
-		<div class="flex flex-col gap-1 text-sm sm:flex-row sm:gap-6">
-			<span>Teléfono: {site.phoneDisplay}</span>
-			<span>Email: {site.email}</span>
+<footer class="bg-white py-8">
+	<div class="flex flex-col items-center justify-between gap-4 py-2 pl-[29px] pr-[74px] text-center sm:flex-row sm:text-left">
+		<div class="text-base text-black">
+			<p>
+				<strong class="font-bold text-[#6c7c69]">Teléfono:</strong>{' '}
+				<a href={`tel:+${site.whatsappNumber}`} class="hover:underline">{site.phoneDisplay}</a>
+			</p>
+			<p>
+				<strong class="font-bold text-[#6c7c69]">Email:</strong>{' '}
+				<a href={`mailto:${site.email}`} class="hover:underline">{site.email}</a>
+			</p>
 		</div>
-		<p class="text-xs text-white/50">© {year} {site.name}. Todos los derechos reservados.</p>
+		<img src="/images/logo.png" alt={site.name} class="h-[70px] w-auto" />
 	</div>
 </footer>

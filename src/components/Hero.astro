@@ -1,61 +1,28 @@
 ---
-import { site, whatsappUrl } from '../data/site';
+import { site } from '../data/site';
 ---
 
-<section id="top" class="relative flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden">
-	<video
-		id="hero-video"
-		class="absolute inset-0 h-full w-full object-cover"
-		autoplay
-		muted
-		playsinline
-		loop
-		poster="/images/ai-scene-1.jpg"
-		data-hls-src={site.heroVideoHls}
-	>
-	</video>
+<section
+	id="top"
+	class="relative flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden bg-fixed bg-cover bg-center"
+	style="background-image: url('/images/hero-photo.png');"
+>
 	<div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/35 to-black/60"></div>
 
 	<div class="relative z-10 mx-auto max-w-3xl px-6 text-center text-white">
-		<p class="text-sm font-medium uppercase tracking-[0.3em] text-gold">{site.name}</p>
-		<h1 class="mt-4 font-sans text-4xl font-semibold leading-tight sm:text-6xl">
-			{site.tagline}
+		<h1 class="font-display text-5xl font-normal leading-tight sm:text-7xl">
+			{site.name}
 		</h1>
 		<p class="mt-4 text-lg text-white/85 sm:text-xl">
-			Paseos en lancha por el Delta de Tigre
+			{site.tagline}
 		</p>
 		<div class="mt-8 flex flex-wrap items-center justify-center gap-4">
 			<a
 				href="#contacto"
-				class="rounded-full bg-gold px-7 py-3 text-sm font-semibold text-ink shadow-lg transition hover:bg-gold-dark"
+				class="rounded-full bg-gold px-7 py-3 text-sm font-semibold text-cream shadow-lg transition hover:bg-gold-dark"
 			>
 				Contactanos
-			</a>
-			<a
-				href={whatsappUrl}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="rounded-full border border-white/70 px-7 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-			>
-				Escribinos por WhatsApp
 			</a>
 		</div>
 	</div>
 </section>
-
-<script>
-	import Hls from 'hls.js';
-
-	const video = document.getElementById('hero-video') as HTMLVideoElement | null;
-	const src = video?.dataset.hlsSrc;
-
-	if (video && src) {
-		if (video.canPlayType('application/vnd.apple.mpegurl')) {
-			video.src = src;
-		} else if (Hls.isSupported()) {
-			const hls = new Hls();
-			hls.loadSource(src);
-			hls.attachMedia(video);
-		}
-	}
-</script>
